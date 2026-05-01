@@ -1,4 +1,5 @@
 import { compile } from '$lib/utils/handlebars';
+import { formatHtml, formatJson } from '$lib/utils/format';
 
 class EditorManager {
 	html = $state('');
@@ -26,6 +27,22 @@ class EditorManager {
 
 		this.renderError = null;
 		return result.output;
+	}
+
+	async formatHtml() {
+		try {
+			this.html = await formatHtml(this.html);
+		} catch {
+			// silently ignore — malformed HTML stays as-is
+		}
+	}
+
+	async formatJson() {
+		try {
+			this.json = await formatJson(this.json);
+		} catch {
+			// silently ignore — invalid JSON stays as-is
+		}
 	}
 }
 
