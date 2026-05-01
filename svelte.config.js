@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -9,7 +9,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: '',
+			base: process.env.NODE_ENV === "production" ? "/hbs-template-preview" : "",
 			relative: false // to support postgres session replays
 		}
 	}
