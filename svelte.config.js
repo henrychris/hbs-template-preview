@@ -9,7 +9,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: process.env.NODE_ENV === "production" ? "/hbs-template-preview" : "",
+			base: "",
 			relative: false // to support postgres session replays
 		}
 	}
