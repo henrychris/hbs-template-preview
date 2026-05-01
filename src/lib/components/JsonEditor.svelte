@@ -1,4 +1,6 @@
 <script lang="ts">
+	import CodeMirror from 'svelte-codemirror-editor';
+	import { json } from '@codemirror/lang-json';
 	import { editorManager } from '$lib/stores/editor.svelte';
 </script>
 
@@ -16,13 +18,19 @@
 			Format
 		</button>
 	</div>
-	<textarea
-		class="flex-1 resize-none p-4 font-mono text-sm text-gray-800 outline-none placeholder:text-gray-300"
-		placeholder={'{ "name": "Henry", "count": 3 }'}
-		value={editorManager.json}
-		oninput={(e) => (editorManager.json = e.currentTarget.value)}
-		spellcheck={false}
-	></textarea>
+	<div class="min-h-0 flex-1 overflow-scroll">
+		<CodeMirror
+			class="h-full"
+			value={editorManager.json}
+			onchange={(v) => (editorManager.json = v)}
+			lang={json()}
+			placeholder={'{ "name": "Henry", "count": 3 }'}
+			styles={{
+				'&': { height: '100%', fontSize: '13px' },
+				'.cm-scroller': { overflow: 'auto', fontFamily: 'ui-monospace, monospace' }
+			}}
+		/>
+	</div>
 	{#if editorManager.jsonError}
 		<p class="border-t border-red-200 bg-red-50 px-4 py-2 text-xs font-medium text-red-600">
 			{editorManager.jsonError}

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import CodeMirror from 'svelte-codemirror-editor';
+	import { html } from '@codemirror/lang-html';
 	import { editorManager } from '$lib/stores/editor.svelte';
 </script>
 
@@ -15,11 +17,17 @@
 			Format
 		</button>
 	</div>
-	<textarea
-		class="flex-1 resize-none p-4 font-mono text-sm text-gray-800 outline-none placeholder:text-gray-300"
-		placeholder={'<h1>Hello, {{name}}!</h1>\n<p>You have {{count}} messages.</p>'}
-		value={editorManager.html}
-		oninput={(e) => (editorManager.html = e.currentTarget.value)}
-		spellcheck={false}
-	></textarea>
+	<div class="min-h-0 flex-1 overflow-scroll">
+		<CodeMirror
+			class="h-full"
+			value={editorManager.html}
+			onchange={(v) => (editorManager.html = v)}
+			lang={html()}
+			placeholder={'<h1>Hello, {{name}}!</h1>\n<p>You have {{count}} messages.</p>'}
+			styles={{
+				'&': { height: '100%', fontSize: '13px' },
+				'.cm-scroller': { overflow: 'auto', fontFamily: 'ui-monospace, monospace' }
+			}}
+		/>
+	</div>
 </div>
