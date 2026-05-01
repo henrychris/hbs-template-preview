@@ -6,7 +6,6 @@
 	import favicon16 from '$lib/assets/favicon-16x16.png';
 	import favicon32 from '$lib/assets/favicon-32x32.png';
 	import appleTouch from '$lib/assets/apple-touch-icon.png';
-	import handlebars from '$lib/assets/Handlebars.png';
 
 	let { children } = $props();
 
@@ -15,6 +14,7 @@
 		'A live Handlebars.js templating playground - for email. Write email templates with Handlebars placeholders, provide JSON context, and see the rendered output in real time.';
 
 	const url = $derived(page.url.href);
+	const handlebars = "https://res.cloudinary.com/dit0zbles/image/upload/t_to_webp/v1777642220/Handlebars_zldg9b.webp";
 </script>
 
 <svelte:head>
