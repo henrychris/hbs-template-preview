@@ -1,12 +1,12 @@
 <script lang="ts">
 	import './layout.css';
 	import { page } from '$app/state';
-	
-	import favicon from "$lib/assets/favicon.ico";
-	import favicon16 from "$lib/assets/favicon-16x16.png";
-	import favicon32 from "$lib/assets/favicon-32x32.png";
-	import appleTouch from "$lib/assets/apple-touch-icon.png";
-	import handlebars from "$lib/assets/Handlebars.png";
+
+	import favicon from '$lib/assets/favicon.ico';
+	import favicon16 from '$lib/assets/favicon-16x16.png';
+	import favicon32 from '$lib/assets/favicon-32x32.png';
+	import appleTouch from '$lib/assets/apple-touch-icon.png';
+	import handlebars from '$lib/assets/Handlebars.png';
 
 	let { children } = $props();
 
