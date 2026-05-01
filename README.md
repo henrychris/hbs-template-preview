@@ -1,42 +1,52 @@
-# sv
+# hbs-template-preview
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A live email templating playground powered by [Handlebars.js](https://handlebarsjs.com/). Write your HTML template, supply a JSON context, and see the rendered output update in real time.
 
-## Creating a project
+**Live demo:** [hbs.henryihenacho.com](https://hbs.henryihenacho.com)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Features
+
+- ✏️ **HTML + Handlebars editor** — syntax-highlighted CodeMirror editor with a Format button
+- 🗂️ **JSON context editor** — supply template data as plain JSON
+- 👁️ **Live preview** — rendered output updates as you type, displayed in a sandboxed iframe
+- 🚨 **Error reporting** — Handlebars compile/render errors are surfaced inline
+- 📱 **Responsive layout** — three-panel swipeable view on mobile, split-pane on desktop
+
+## Stack
+
+- [SvelteKit](https://kit.svelte.dev/) + [Svelte 5](https://svelte.dev/)
+- [Handlebars.js](https://handlebarsjs.com/)
+- [CodeMirror 6](https://codemirror.net/) via [svelte-codemirror-editor](https://github.com/touchifyapp/svelte-codemirror-editor)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Bun](https://bun.sh/)
+
+## Getting started
 
 ```sh
-# create a new project
-npx sv create my-app
+bun install
+bun run dev
 ```
 
-To recreate this project with the same configuration:
+That's it.
 
-```sh
-# recreate this project
-bun x sv@0.15.2 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:none" --install bun .
-```
+## Usage
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+1. Write your Handlebars template in the **Template** panel, e.g.:
+   ```html
+   <h1>Hello, {{name}}!</h1>
+   <p>You have {{count}} new messages.</p>
+   ```
+2. Provide matching data in the **Context** panel as JSON:
+   ```json
+   { "name": "Alice", "count": 3 }
+   ```
+3. The **Preview** panel renders the result live.
 
 ## Building
 
-To create a production version of your app:
-
 ```sh
-npm run build
+bun run build
+bun run preview
 ```
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+The app is statically exported and deployed via GitHub Pages.
