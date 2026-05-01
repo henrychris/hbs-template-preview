@@ -40,6 +40,7 @@
 		"@codemirror/lang-html": "^6.4.11",
 		"@codemirror/lang-json": "^6.0.2",
 		"handlebars": "^4.7.9",
+		"posthog-js": "^1.372.5",
 		"svelte-codemirror-editor": "^2.1.0"
 	}
 }

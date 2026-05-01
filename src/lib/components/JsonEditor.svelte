@@ -2,6 +2,12 @@
 	import CodeMirror from 'svelte-codemirror-editor';
 	import { json } from '@codemirror/lang-json';
 	import { editorManager } from '$lib/stores/editor.svelte';
+	import posthog from 'posthog-js';
+
+	function handleFormat() {
+		posthog.capture('context_formatted');
+		editorManager.formatJson();
+	}
 </script>
 
 <div class="flex h-full flex-col">
@@ -11,7 +17,7 @@
 			<p class="text-xs text-gray-400">JSON</p>
 		</div>
 		<button
-			onclick={() => editorManager.formatJson()}
+			onclick={handleFormat}
 			disabled={editorManager.jsonError !== null}
 			class="rounded px-2 py-1 text-xs font-medium text-gray-500 transition-colors hover:bg-gray-200 hover:text-gray-700 disabled:cursor-not-allowed disabled:opacity-40"
 		>

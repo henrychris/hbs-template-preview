@@ -2,6 +2,12 @@
 	import CodeMirror from 'svelte-codemirror-editor';
 	import { html } from '@codemirror/lang-html';
 	import { editorManager } from '$lib/stores/editor.svelte';
+	import posthog from 'posthog-js';
+
+	function handleFormat() {
+		posthog.capture('template_formatted');
+		editorManager.formatHtml();
+	}
 </script>
 
 <div class="flex h-full flex-col">
@@ -11,7 +17,7 @@
 			<p class="text-xs text-gray-400">HTML + Handlebars</p>
 		</div>
 		<button
-			onclick={() => editorManager.formatHtml()}
+			onclick={handleFormat}
 			class="rounded px-2 py-1 text-xs font-medium text-gray-500 transition-colors hover:bg-gray-200 hover:text-gray-700"
 		>
 			Format

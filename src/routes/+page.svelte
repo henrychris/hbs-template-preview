@@ -4,6 +4,7 @@
 	import Preview from '$lib/components/Preview.svelte';
 	import HelpButton from '$lib/components/HelpButton.svelte';
 	import HelpModal from '$lib/components/HelpModal.svelte';
+	import posthog from 'posthog-js';
 
 	const VIEWS = ['Template', 'Context', 'Preview'] as const;
 	let currentView = $state(0);
@@ -11,6 +12,11 @@
 
 	function go(dir: -1 | 1) {
 		currentView = (currentView + dir + VIEWS.length) % VIEWS.length;
+	}
+
+	function openHelp() {
+		posthog.capture('help_opened');
+		helpOpen = true;
 	}
 </script>
 
@@ -78,7 +84,7 @@
 					<path d="M9 18l6-6-6-6" />
 				</svg>
 			</button>
-			<HelpButton onhelp={() => (helpOpen = true)} />
+			<HelpButton onhelp={openHelp} />
 		</div>
 	</nav>
 
@@ -90,7 +96,7 @@
 			<JsonEditor />
 		</div>
 		<div class={currentView === 2 ? 'h-full' : 'hidden'}>
-			<Preview onhelp={() => (helpOpen = true)} />
+			<Preview onhelp={openHelp} />
 		</div>
 	</div>
 </div>
@@ -106,6 +112,6 @@
 		</div>
 	</div>
 	<div class="w-1/2">
-		<Preview onhelp={() => (helpOpen = true)} />
+		<Preview onhelp={openHelp} />
 	</div>
 </div>
