@@ -2,14 +2,21 @@
 	import HtmlEditor from '$lib/components/HtmlEditor.svelte';
 	import JsonEditor from '$lib/components/JsonEditor.svelte';
 	import Preview from '$lib/components/Preview.svelte';
+	import HelpButton from '$lib/components/HelpButton.svelte';
+	import HelpModal from '$lib/components/HelpModal.svelte';
 
 	const VIEWS = ['Template', 'Context', 'Preview'] as const;
 	let currentView = $state(0);
+	let helpOpen = $state(false);
 
 	function go(dir: -1 | 1) {
 		currentView = (currentView + dir + VIEWS.length) % VIEWS.length;
 	}
 </script>
+
+{#if helpOpen}
+	<HelpModal onclose={() => (helpOpen = false)} />
+{/if}
 
 <!-- Mobile layout (≤ 768px) -->
 <div class="flex h-dvh flex-col md:hidden">
@@ -51,25 +58,28 @@
 			</div>
 		</div>
 
-		<button
-			onclick={() => go(1)}
-			class="flex h-9 w-9 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-200 active:bg-gray-300"
-			aria-label="Next panel"
-		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+		<div class="flex items-center gap-1">
+			<button
+				onclick={() => go(1)}
+				class="flex h-9 w-9 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-200 active:bg-gray-300"
+				aria-label="Next panel"
 			>
-				<path d="M9 18l6-6-6-6" />
-			</svg>
-		</button>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M9 18l6-6-6-6" />
+				</svg>
+			</button>
+			<HelpButton onhelp={() => (helpOpen = true)} />
+		</div>
 	</nav>
 
 	<div class="flex-1 overflow-hidden">
@@ -80,7 +90,7 @@
 			<JsonEditor />
 		</div>
 		<div class={currentView === 2 ? 'h-full' : 'hidden'}>
-			<Preview />
+			<Preview onhelp={() => (helpOpen = true)} />
 		</div>
 	</div>
 </div>
@@ -96,6 +106,6 @@
 		</div>
 	</div>
 	<div class="w-1/2">
-		<Preview />
+		<Preview onhelp={() => (helpOpen = true)} />
 	</div>
 </div>

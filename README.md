@@ -1,4 +1,4 @@
-# hbs-template-preview
+# Handlebars + HTML Playground
 
 A live email templating playground powered by [Handlebars.js](https://handlebarsjs.com/). Write your HTML template, supply a JSON context, and see the rendered output update in real time.
 
@@ -6,11 +6,10 @@ A live email templating playground powered by [Handlebars.js](https://handlebars
 
 ## Features
 
-- ✏️ **HTML + Handlebars editor** — syntax-highlighted CodeMirror editor with a Format button
-- 🗂️ **JSON context editor** — supply template data as plain JSON
-- 👁️ **Live preview** — rendered output updates as you type, displayed in a sandboxed iframe
-- 🚨 **Error reporting** — Handlebars compile/render errors are surfaced inline
-- 📱 **Responsive layout** — three-panel swipeable view on mobile, split-pane on desktop
+- **HTML + Handlebars editor** — syntax-highlighted CodeMirror editor with a Format button
+- **JSON context editor** — supply template data as plain JSON
+- **Live preview** — rendered output updates as you type, displayed in a sandboxed iframe
+- **Responsive layout** — three-panel swipeable view on mobile, split-pane on desktop
 
 ## Stack
 
