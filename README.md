@@ -58,10 +58,10 @@ Before starting any work, [open an issue](../../issues/new) to describe what you
 
 ### Branch structure
 
-| Branch | Purpose |
-|---|---|
-| `master` | Production |
-| `development` | Staging — deployed on Railway |
+| Branch                  | Purpose                                  |
+| ----------------------- | ---------------------------------------- |
+| `master`                | Production                               |
+| `development`           | Staging                                  |
 | `feat/*`, `fix/*`, etc. | Feature branches, cut from `development` |
 
 ### Workflow
