@@ -49,3 +49,43 @@ bun run preview
 ```
 
 The app is statically exported and deployed via GitHub Pages.
+
+## Contributing
+
+### Open an issue first
+
+Before starting any work, [open an issue](../../issues/new) to describe what you want to build or fix. This keeps implementation details visible and lets the approach get agreed on before any code is written.
+
+### Branch structure
+
+| Branch | Purpose |
+|---|---|
+| `master` | Production |
+| `development` | Staging — deployed on Railway |
+| `feat/*`, `fix/*`, etc. | Feature branches, cut from `development` |
+
+### Workflow
+
+1. Cut a feature branch from `development`:
+   ```sh
+   git checkout development
+   git pull origin development
+   git checkout -b feat/your-feature
+   ```
+2. Raise a PR from your feature branch → `development`, squash merge.
+3. Raise a PR from `development` → `master`, squash merge.
+4. After merging to `master`, rebase `development` onto `master` (do **not** back-merge):
+   ```sh
+   git checkout development
+   git pull origin development
+   git rebase origin/master
+   git push --force-with-lease origin development
+   ```
+
+### Pull request checklist
+
+Every PR should answer three questions — the [PR template](.github/PULL_REQUEST_TEMPLATE.md) will prompt you:
+
+- **Why this PR** — what problem does it solve? Link the issue.
+- **What does this PR do** — a concise summary of the changes.
+- **How can this PR be tested** — step-by-step instructions for the reviewer.
