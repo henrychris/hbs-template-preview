@@ -66,21 +66,17 @@ Before starting any work, [open an issue](../../issues/new) to describe what you
 
 ### Workflow
 
-1. Cut a feature branch from `development`:
+1. Fork the repository and clone your fork.
+2. Add the upstream remote:
    ```sh
-   git checkout development
-   git pull origin development
-   git checkout -b feat/your-feature
+   git remote add upstream https://github.com/henryihenacho/hbs-template-preview.git
    ```
-2. Raise a PR from your feature branch → `development`, squash merge.
-3. Raise a PR from `development` → `master`, squash merge.
-4. After merging to `master`, rebase `development` onto `master` (do **not** back-merge):
+3. Cut a feature branch from `development`:
    ```sh
-   git checkout development
-   git pull origin development
-   git rebase origin/master
-   git push --force-with-lease origin development
+   git fetch upstream
+   git checkout -b feat/your-feature upstream/development
    ```
+4. Push to your fork and raise a PR from your feature branch → `development` on this repo.
 
 ### Pull request checklist
 
