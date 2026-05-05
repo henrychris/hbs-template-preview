@@ -1,9 +1,10 @@
 import posthog from 'posthog-js';
 import type { HandleClientError } from '@sveltejs/kit';
+import { PUBLIC_POSTHOG_HOST, PUBLIC_POSTHOG_PROJECT_TOKEN } from '$env/static/public';
 
 export async function init() {
-	posthog.init('phc_9IJ3TdK92llkQNMVmW3wpY9geqxAXVusWRT0nIbtYRu', {
-		api_host: 'https://us.i.posthog.com',
+	posthog.init(PUBLIC_POSTHOG_PROJECT_TOKEN, {
+		api_host: PUBLIC_POSTHOG_HOST,
 		defaults: '2026-01-30',
 		capture_exceptions: true
 	});

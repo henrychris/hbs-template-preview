@@ -22,6 +22,8 @@ jobs:
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
+          PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ secrets.PUBLIC_POSTHOG_PROJECT_TOKEN }}
+          PUBLIC_POSTHOG_HOST: ${{ secrets.PUBLIC_POSTHOG_HOST }}
         run: |
           bun run build
 
